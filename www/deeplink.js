@@ -155,6 +155,12 @@ var IonicDeeplink = {
   _queryToObject: function(q) {
     if(!q) return {};
 
+    // Remove fragment part from URL
+    var fIndex = q.lastIndexOf('#');
+    if (fIndex > -1) {
+      q = q.substring(0, fIndex);
+    }
+
     var qIndex = q.lastIndexOf('?');
     if(qIndex < 0) return {};
 
