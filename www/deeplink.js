@@ -28,6 +28,10 @@ var IonicDeeplink = {
    */
   NAVIGATION_DELAY: 800,
 
+  options: {
+    useFragmentAsPath: true,
+  },
+
   canOpenApp: function(app, cb) {
     exec(cb, null, PLUGIN_NAME, 'canOpenApp', []);
   },
@@ -178,7 +182,7 @@ var IonicDeeplink = {
    */
   _getRealPath: function(data) {
     // If we have a fragment, we use that as the path
-    if(data.fragment) {
+    if(this.options.useFragmentAsPath && data.fragment) {
       var fi = data.fragment.indexOf('?');
       if(fi > -1) {
         return data.fragment.slice(0, fi).slice(1);
